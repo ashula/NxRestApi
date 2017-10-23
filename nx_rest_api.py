@@ -3,6 +3,7 @@
 #
 #    Nutnaix AHV cluster Imageing tool with NX REST-API
 #
+#    Ver-0.06: 23Oct2017, extend acception of http return code from 200 only to 200..206.
 #    Ver-0.05: 10Oct2017, text -> json conversion should be done in nx_rest_api.rest_api().
 #    Ver-0.04: 20Oct2017, change file name from nx_get_images.py to nx_rest_api.py
 #    Ver-0.03: 20Oct2017, define rest-api() to specify method, from rest_api_get()
@@ -35,7 +36,7 @@ def rest_api(ip, sub_url, payload, method):
 #    print "method=%s" % method
    
     URL='https://'+ip+'/'+ sub_url 
-#    print "url=%s" % URL
+    print "url=%s" % URL
     
     jpayload=json.dumps(payload)
 
@@ -56,14 +57,14 @@ def rest_api(ip, sub_url, payload, method):
         try:
             if (method == 'get'):
                 r = requests.get(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
-            elif (method == 'put'):
-                r = requests.put(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
+            elif (method == 'post'):
+                r = requests.post(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
             elif (method == 'delete'):
                 r = requests.delete(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
-            elif (method == 'update'):
-                r = requests.update(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
+            elif (method == 'put'):
+                r = requests.put(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
             else:            
-                print >> sys.syserr, "Bad method %s. Program Abort!" % method
+                print >> sys.stderr, "Bad method %s. Program Abort!" % method
                 exit()
         except requests.exceptions.RequestException as e:
             f_success = False
@@ -72,7 +73,7 @@ def rest_api(ip, sub_url, payload, method):
             print >> sys.stderr, "Credentials: maybe not be reachable to Target!"
             r.status_code = 400
         else:
-            if (r.status_code ==200):
+            if (r.status_code in [200,201,202,203,204,205,206]):
                 f_success = True
                 print >> sys.stderr,"(%s,%s):Credentials Success" % (uid,pwd)
                 break
