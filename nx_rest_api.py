@@ -3,7 +3,7 @@
 #
 #    Nutnaix AHV cluster Imageing tool with NX REST-API
 #
-#    VEr-0.07: 25Oct2017, separate port address of PRISM from VIP argument.
+#    Ver-0.07: 25Oct2017, separate port address of PRISM from VIP argument.
 #    Ver-0.06: 23Oct2017, extend acception of http return code from 200 only to 200..206.
 #    Ver-0.05: 10Oct2017, text -> json conversion should be done in nx_rest_api.rest_api().
 #    Ver-0.04: 20Oct2017, change file name from nx_get_images.py to nx_rest_api.py
