@@ -1,6 +1,7 @@
 #
 #    module nx_create_image_url()
 #
+#    Ver-0.03: 25Oct2017, to get VIP, IMAGE_NAME, Container Name through argv.
 #    Ver-0.02: 25Oct2017, separate port address of PRISM from VIP argument. (due to change of rest_api())
 #    Ver-0.01,23Oct2017, Initial implementation.
 #
@@ -18,6 +19,7 @@
 #        to show invoked task working in PRISM task window.
 #
 import sys
+import get_argv
 import nx_rest_api
 
 def nx_create_image_url(VIP,IMG_NAME,IOS_URL,STORAGE_CONTAINER):
@@ -25,7 +27,7 @@ def nx_create_image_url(VIP,IMG_NAME,IOS_URL,STORAGE_CONTAINER):
 
     body = {
         "name":IMG_NAME,
-        "Imagne_type":"DISK_IMAGE",
+        "Imagne_type":"ISO_IMAGE",
         "image_import_spec":{
         "url":ISO_URL,
         "storage_container_name":STORAGE_CONTAINER
@@ -36,12 +38,18 @@ def nx_create_image_url(VIP,IMG_NAME,IOS_URL,STORAGE_CONTAINER):
     return r
 
 if (__name__=="__main__"):
-    VIP="172.16.2.109"
-    IMG_NAME="xCOS69_ISO"
+#    VIP="172.16.2.109"
+#    IMAGE_NAME="xCOS69_ISO"
     ISO_URL= "http://ftp.riken.jp/Linux/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-bin-DVD1.iso"
-    STORAGE_CONTAINER="xCTR11x"
+#    STORAGE_CONTAINER="xCTR11x"
 
-    r=nx_create_image_url(VIP,IMG_NAME,ISO_URL,STORAGE_CONTAINER)
+    argv=get_argv.get_argv(4)
+
+    VIP = argv[1]
+    IMAGE_NAME=argv[2]
+    STORAGE_CONTAINER=argv[3]
+
+    r=nx_create_image_url(VIP,IMAGE_NAME,ISO_URL,STORAGE_CONTAINER)
 
     print >> sys.stderr, r
 
