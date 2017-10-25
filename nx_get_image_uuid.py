@@ -1,6 +1,7 @@
 #
 #    module nx_get_image_uuid.py
 #
+#    Ver-0.03: 25Oct2017, to get VIP and IMAGE_NAME from arguments in "__main__" flow.
 #    Ver-0.02: 25Oct2017, separate port address of PRISM from VIP argument. (due to change of rest_api())
 #    Ver-0.01: 24Oct2017, Inital implementation.
 #
@@ -9,6 +10,7 @@
 #
 import sys
 import json
+import get_argv
 import nx_get_images
 
 def get_image_uuid(JSON,IMAGE_NAME):
@@ -352,9 +354,15 @@ if (__name__=='__main__'):
   ]
 }
 
-VIP = '172.16.2.109'
+#VIP = '172.16.2.109'
+#IMAGE_NAME='xCOS69_ISO'
+
+argv=get_argv.get_argv(3)
+VIP=argv[1]
+IMAGE_NAME=argv[2]
+
 test_body = nx_get_images.nx_get_images(VIP)
 # print >> sys.stderr, test_body.text
-uuid_list = get_image_uuid(test_body.json(),"xCOS69_ISO")
+uuid_list = get_image_uuid(test_body.json(),IMAGE_NAME)
 
 print uuid_list
