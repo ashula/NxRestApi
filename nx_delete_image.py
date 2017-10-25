@@ -1,6 +1,7 @@
 #
 #    module nx_delete_image.py
 #
+#    Ver-0.03: 25Oct2017, VIP, IMAGE_NAME is passwd through argv.
 #    Ver-0.02: 25Oct2017, defined nx_delete_image() return values.
 #    Ver-0.01: 25Oct2017, Initial Implementation
 #
@@ -34,8 +35,12 @@ def nx_delete_image(VIP,IMAGE_NAME):
     return n
 
 if (__name__=='__main__'):
-    VIP = '172.16.2.109'
-    IMAGE_NAME='xCOS69_ISO'
+#    VIP = '172.16.2.109'
+#    IMAGE_NAME='xCOS69_ISO'
+
+    argv=get_argv.get_argv(3)
+    VIP=argv[1]
+    IMAGE_NAME=argv[2]
 
     r=nx_get_images.nx_get_images(VIP)
     n=nx_delete_image(VIP,IMAGE_NAME)
