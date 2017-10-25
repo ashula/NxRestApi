@@ -1,6 +1,7 @@
 #
 #    module nx_get_image_uuid.py
 #
+#    Ver-0.02: 25Oct2017, separate port address of PRISM from VIP argument. (due to change of rest_api())
 #    Ver-0.01: 24Oct2017, Inital implementation.
 #
 #    get list of uuids for AHV VM images with specified name.
@@ -351,7 +352,7 @@ if (__name__=='__main__'):
   ]
 }
 
-VIP = '172.16.2.109:9440'
+VIP = '172.16.2.109'
 test_body = nx_get_images.nx_get_images(VIP)
 # print >> sys.stderr, test_body.text
 uuid_list = get_image_uuid(test_body.json(),"xCOS69_ISO")
