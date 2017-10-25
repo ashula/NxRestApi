@@ -3,6 +3,7 @@
 #
 #    Nutnaix AHV cluster Imageing tool with NX REST-API
 #
+#    VEr-0.07: 25Oct2017, separate port address of PRISM from VIP argument.
 #    Ver-0.06: 23Oct2017, extend acception of http return code from 200 only to 200..206.
 #    Ver-0.05: 10Oct2017, text -> json conversion should be done in nx_rest_api.rest_api().
 #    Ver-0.04: 20Oct2017, change file name from nx_get_images.py to nx_rest_api.py
@@ -24,7 +25,7 @@ import read_credentials
 #
 #  def rest_api(ip,sub_url,body,method)
 #
-#      ip: IP address and PORT of target NX cluster. (ex. 172.16.11.109:9440)
+#      ip: IP address  of target NX cluster. (ex. 172.16.11.109, function supply PRISM port address 9440.)
 #      sub_url: sub_url to specify REST-API version and action.
 #      payload: parameter in json format.
 #      method: method of REST-API, e.g. GET,PUT,DELETE,UPDAYE
@@ -35,7 +36,7 @@ def rest_api(ip, sub_url, payload, method):
 #    print "body=%s" % payload
 #    print "method=%s" % method
    
-    URL='https://'+ip+'/'+ sub_url 
+    URL='https://'+ip+':9440/'+ sub_url
     print "url=%s" % URL
     
     jpayload=json.dumps(payload)
@@ -86,7 +87,7 @@ def rest_api(ip, sub_url, payload, method):
 #######################
 
 if (__name__=='__main__'):
-    VIP='172.16.11.109:9440'
+    VIP='172.16.2.109'
     SUB_URL='PrismGateway/services/rest/v2.0/images/'
     
     payload={}
