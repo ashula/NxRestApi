@@ -1,9 +1,10 @@
 #
 #    module nx_create_image_url()
 #
+#    Ver-0.02: 25Oct2017, separate port address of PRISM from VIP argument. (due to change of rest_api())
 #    Ver-0.01,23Oct2017, Initial implementation.
 #
-#    VIP: IP address with PRISM PORT ADDRESS for target AHV cluster.
+#    VIP: IP address for target AHV cluster.
 #    IMG_NAME: Image Name.
 #    ISO_URL: url of iso imiage.
 #    STORAGE_CONTAINER: Storage Container Name that VM IMAGE will be located.
@@ -35,7 +36,7 @@ def nx_create_image_url(VIP,IMG_NAME,IOS_URL,STORAGE_CONTAINER):
     return r
 
 if (__name__=="__main__"):
-    VIP="172.16.2.109:9440"
+    VIP="172.16.2.109"
     IMG_NAME="xCOS69_ISO"
     ISO_URL= "http://ftp.riken.jp/Linux/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-bin-DVD1.iso"
     STORAGE_CONTAINER="xCTR11x"
