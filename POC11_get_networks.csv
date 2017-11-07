@@ -1,0 +1,5 @@
+﻿"metadata__grand_total_entities","metadata__total_entities","entities__logical_timestamp","entities__vlan_id","entities__ip_config__network_address","entities__ip_config__prefix_length","entities__ip_config__default_gateway","entities__ip_config__dhcp_options__domain_name_servers","entities__ip_config__pool__range","entities__ip_config__dhcp_server_address","entities__uuid","entities__name"
+"4","4","8","100","192.168.100.0","24","192.168.100.254","8.8.8.8","192.168.100.100 192.168.100.200","192.168.100.253","d10965e2-f661-49bd-996b-5c2948c97e33","VLAN.100"
+"","","5","200","192.168.200.0","24","192.168.200.1","8.8.8.8","192.168.200.100 192.168.200.200","192.168.200.254","dbb8df4c-8261-4685-8065-8a616f0a1d98","vlan.200"
+"","","443","0","","0","","","","","81412a21-283a-481e-9563-93f0d5adab83","VLAN.0"
+"","","4","101","","0","","","","","8d7a9419-ab8a-47f3-ae22-7e81f4763fde","VLAN.101"
