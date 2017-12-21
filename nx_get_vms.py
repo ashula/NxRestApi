@@ -1,6 +1,7 @@
 #
 #    Module: nx_get_vms.py
 #
+#    Ver-0.02: 21Dec2017, get vm info with nic info.
 #    Ver-0.01: 05Nov2017, initial nx_get_vms.py from nx_get_image.py Ver-0.05.
 #    Ver-0.05: 25Oct2017, get VIP through arguments.
 #    Ver-0.04: 25Oct2017, separate port address of PRISM from VIP argument. (due to change of rest_api())
@@ -23,7 +24,7 @@ import nx_rest_api
 
 def  nx_get_hosts(VIP):
 #    SUB_URL = 'PrismGateway/services/rest/v2.0/images/'
-    SUB_URL = 'api/nutanix/v2.0/vms/'
+    SUB_URL = 'api/nutanix/v2.0/vms/?include_vm_nic_config=true'
 
     payload = {}
     r = requests.Response()
@@ -39,6 +40,6 @@ if (__name__=='__main__'):
 
     r=nx_get_hosts(VIP)
 
-    print "Return_code:%d" % r.status_code
+    print >> sys.stderr, "Return_code:%d" % r.status_code
     print "%s" % r.text
 
