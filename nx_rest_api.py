@@ -3,6 +3,7 @@
 #
 #    Nutnaix AHV cluster Imageing tool with NX REST-API
 #
+#    Ver-0.08: 23Jan2018, coding clean up.
 #    Ver-0.07: 25Oct2017, separate port address of PRISM from VIP argument.
 #    Ver-0.06: 23Oct2017, extend acception of http return code from 200 only to 200..206.
 #    Ver-0.05: 10Oct2017, text -> json conversion should be done in nx_rest_api.rest_api().
@@ -30,16 +31,22 @@ import read_credentials
 #      payload: parameter in json format.
 #      method: method of REST-API, e.g. GET,PUT,DELETE,UPDAYE
 #
-def rest_api(ip, sub_url, payload, method):
+def rest_api(VIP, SUB_URL, PAYLOAD, METHOD):
 #    print "ip=%s" % ip
 #    print "sub_url=%s" % sub_url
 #    print "body=%s" % payload
 #    print "method=%s" % method
-   
-    URL='https://'+ip+':9440/'+ sub_url
-    print "url=%s" % URL
+
+    #print type('https://')
+    #print type(VIP)
+    #print type(':9440/')
+    #print type(SUB_URL)
+
+    URL = 'https://' + VIP + ':9440/' + SUB_URL
+
+    print >> sys.stderr, "url=%s" % URL
     
-    jpayload=json.dumps(payload)
+    jpayload=json.dumps(PAYLOAD)
 
     headers={'Content-Type': 'application/json; charset=utf-8'} 
 
@@ -56,13 +63,13 @@ def rest_api(ip, sub_url, payload, method):
         print >> sys.stderr, "(%s,%s)" % (uid,pwd)
         r = requests.Response()
         try:
-            if (method == 'get'):
+            if (METHOD == 'get'):
                 r = requests.get(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
-            elif (method == 'post'):
+            elif (METHOD == 'post'):
                 r = requests.post(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
-            elif (method == 'delete'):
+            elif (METHOD == 'delete'):
                 r = requests.delete(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
-            elif (method == 'put'):
+            elif (METHOD == 'put'):
                 r = requests.put(URL,headers=headers,auth=(uid,pwd),verify=False,data=jpayload)
             else:            
                 print >> sys.stderr, "Bad method %s. Program Abort!" % method
@@ -87,7 +94,7 @@ def rest_api(ip, sub_url, payload, method):
 #######################
 
 if (__name__=='__main__'):
-    VIP='172.16.2.109'
+    VIP='172.16.8.109'
     SUB_URL='PrismGateway/services/rest/v2.0/images/'
     
     payload={}
