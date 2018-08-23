@@ -1,0 +1,9 @@
+training_t
+training_key
+training_name
+training_description
+training_hold_date
+training_internal_f
+training_effective_f
+training_owner_company
+training_url

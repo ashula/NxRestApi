@@ -6,10 +6,13 @@
 #
 #      using psycopg2 module to connect to PostgreSQL server.
 #
+import get_argv
 import psycopg2
 import psycopg2.extensions
 
-DSN = "dbname='NxJapanSeSme' user='postgres' host='172.16.251.34' password='Pg2018tm'"
+
+
+DSN = "dbname='NxJapanSeSme' user='postgres' host='172.16.251.24' password='Pg2018tm'"
 conn = psycopg2.connect(DSN)
 conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED)
 conn.set_client_encoding("UTF8")
