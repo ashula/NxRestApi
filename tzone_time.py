@@ -3,7 +3,7 @@
 """
 #
 #   tzone_time.py  in Python3 script
-#   Ver-0.01, 03Apr2019, (c) t.m 
+#   Ver-0.01, 03Apr2019, (c) Ashula
 #
 #  usage 1, no argument, use now() at Tokyo
 #
